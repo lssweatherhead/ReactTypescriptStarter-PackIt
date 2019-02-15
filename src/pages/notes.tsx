@@ -11,8 +11,20 @@ class Notes extends Component {
                   Tutorial notes
               </h2>
             </div>
+
+            <hr />
             
+            <div className="container">
+              <h3>Part 0</h3>
+            </div>
+            
+            <hr />
+
+            <div className="container">
+              <h3>Part 1</h3>
+            </div>
         </div>
+
       </React.Fragment>
     );
   }
