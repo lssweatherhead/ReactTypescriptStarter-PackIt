@@ -1,29 +1,43 @@
 import './App.scss';
 
 import React, { Component } from 'react';
+import Home from './pages/home';
+import Notes from './pages/notes';
 
-class App extends Component {
+interface IState {
+  showNotes: boolean
+}
+
+class App extends Component<any, IState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      showNotes: false
+    };
+  }
+
   render() {
     return (
       <React.Fragment>
-      <div className="section">
-        <div className="container">
-          <h1 className="title is-1"><i className="fas fa-map-signs"></i> Let's <span className="site-name">Pack It</span></h1>
-          <h2 className="subtitle is-family-secondary is-3">
-            Time to get away from it all
-          </h2>
-
-          
-        </div>
-        
-      </div>
-      <div className="hero">
-        <div className="container">
-          <p>let's go</p>
-        </div>
-      </div>
-      </React.Fragment>
+        <a className="notes-link button is-medium is-outlined" href="" onClick={e => this.toggleNotes(e)}>
+          <span className="icon">
+            <i className="fas fa-eye"></i>
+          </span>
+          <span>{ this.state.showNotes ? "Show app" : "See notes"}</span>
+        </a>
+        {this.state.showNotes ?
+          <Notes /> :
+          <Home />
+        }
+      </React.Fragment>     
     );
+  }
+
+  toggleNotes = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    this.setState({
+      showNotes: !this.state.showNotes
+    })
   }
 }
 
