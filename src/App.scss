@@ -3,16 +3,21 @@
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Raleway');
 
 
-$pink: rgb(255, 51, 85);
+$coral: #f7867e;
+$green: #96b375;
+$teal: #00786c;
+$grey-light: #efefef;
 
 // Update Bulma's global variables
 $family-primary: 'Luckiest Guy', cursive;
 $family-secondary: 'Raleway', sans-serif;
-$link: $pink;
+$primary: $teal;
+$link: $coral;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
 // Update some of Bulma's component variables
+$body-background-color: $grey-light;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
@@ -29,5 +34,5 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/layout/section.sass";
 
 .site-name {
-  color: $pink;
+  color: $teal;
 }
