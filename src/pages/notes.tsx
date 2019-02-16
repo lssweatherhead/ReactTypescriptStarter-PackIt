@@ -8,7 +8,7 @@ class Notes extends Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeStep: undefined
+      activeStep: 3
     }
   }
 
@@ -95,6 +95,10 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div id="sec1" className="">
                     <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
+                    </div>
                   </div>
 
                   <hr />
@@ -179,6 +183,88 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 3 - State and Component Lifecycle</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="subtitle has-text-weight-bold is-uppercase">State</p>
+                      <p>State is an internal ("encapsulated") set of properties that a component will use to keep track of interactions and what the component should show in the view.</p>
+                      <p>So let's look at giving our <span className="is-family-code">Home</span> component an idea of how many people will be going away on our holiday.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IState {"}</p>
+                            <p>{"   numberOfPeople: number;"}</p>
+                            <p>{"}"}</p>
+                            <p>{"     "}</p>
+                            <p>{"class Home extends Component<any, IState> {"}</p>
+                            <p>{"   constructor(props: any) {"}</p>
+                            <p>{"       super(props);"}</p>
+                            <p>{"       this.state = {"}</p>
+                            <p>{"           numberOfPeople: 0"}</p>
+                            <p>{"       };"}</p>
+                            <p>{"   }"}</p>
+                            <p>{"   ..."}</p>
+                            <p>{"}"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>All this is doing is telling our component that it has a property <span className="is-family-code">numberOfPeople</span> (which is a <span className="is-family-code">number</span>), and that the initial state of the component is that there are 0 people going away.</p>
+                      <p>Note how we pass props to the base constructor. Class components should always call the base constructor with <span className="is-family-code">props</span>.</p>
+                      <p>Now, if we allow the user to select from a list of options (1 person, 2 people, 3 people... etc) and fire off an event with the selected number (see more on this in <a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Handling events</a>) then this will set the state appropriately:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"updateNumberPeople = (event: React.MouseEvent<HTMLAnchorElement>, numberPeople: number) => {"}</p>
+                            <p>{"   event.preventDefault();"}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"       numberOfPeople: numberPeople"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"}"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>This function takes two arguments - the event (in this case a mouse event), and a number; the special <span className="is-family-code">setState</span> function is called to load the provided number into the component state.</p>
+                    
+                      <p className="has-text-weight-bold">The special <span className="is-family-code">{"setState({...})"}</span> function</p>
+                      <ul>
+                        <li>When this function is called, React knows that the state has changed, and so will call the <span className="is-family-code">render()</span> method again which will update the view</li>
+                        <li>You cannot modify state directly i.e. you can't just say <span className="is-family-code">this.state.numberOfPeople = 10</span> as this will not re-render the component (so nothing will change in the view)</li>
+                        <li><span className="is-family-code">setState()</span> may be updated asynchronously which means you cannot rely on their values when they are in flux</li>
+                        <li>There may be multiple independent properties in a single component's state - using the <span className="is-family-code">setState()</span> function will only update the specified parameters and will leave the others intact</li>
+                      </ul>
+
+
+                      <p className="subtitle has-text-weight-bold is-uppercase">Component Lifecycle</p>
+
+                      <p>There are a few functions that the component lifecycle offers as hooks which we can use to inject or retain information. I will touch on a few of the most frequently used (but you can see more <a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle">here</a>)</p>
+                      
+                      <p className="has-text-weight-bold"><span className="is-family-code">componentDidMount()</span></p>
+                      <p>This is a function that is called once, when the component is first loaded into the view.</p>
+                      <p>It is a good place to load in readonly data from APIs such as the values of dropdown lists or sorting options.</p>
+
+                      <p className="has-text-weight-bold"><span className="is-family-code">componentDidUpdate(prevProps, prevState)</span></p>
+                      <p>This is called when the state or props for the component updates (and the component is going to re-render in the view)</p>
+                      <p>In our example, we could see this being called whenever we change the number of people going on our holiday:</p>
+                      
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"componentDidUpdate(prevProps: any, prevState: IState) {"}</p>
+                            <p>{"   console.log(\"Used to have: \" + prevState.numberOfPeople + \" people, but now have: \" + this.state.numberOfPeople + \" people\");"}</p>
+                            <p>{"}"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+                      
+                      <img src="/images/component_didupdate.PNG" />
+
+                      <p className="has-text-weight-bold"><span className="is-family-code">componentWillUnmount()</span></p>
+                      <p>This will be called whenever a component is about to be destroyed and removed from the view.</p>
+                    
+                    </div>
                   </div>
 
                   <hr />
