@@ -32,6 +32,7 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/grid/columns.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/elements/icon.sass";
+@import "../node_modules/bulma/sass/components/card.sass";
 
 .site-name {
   color: $teal;
@@ -47,6 +48,16 @@ ul.cli-code {
 
   li:before {
     content: "> ";
+  }
+}
+
+ol.far-space {
+  li {
+    padding: 15px 0;
+
+    .is-family-code, img {
+      padding: 15px 0;
+    }
   }
 }
 

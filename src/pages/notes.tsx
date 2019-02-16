@@ -8,7 +8,7 @@ class Notes extends Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeStep: 4
+      activeStep: 5
     }
   }
 
@@ -338,6 +338,88 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 5 - Conditional rendering</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
+
+                      <p>There are a few different ways to show or hide content depending upon with component state</p>
+
+                      <ol className="far-space">
+                        <li>
+                          Using an element variable - we could use this for a search summary:
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"render() {"}</p>
+                                <p>{"   const hasSelectedPeople = this.state.numberOfPeople !== 0;"}</p>
+                                <p>{"   let searchSummary;"}</p>
+                                <p>{"   if (hasSelectedPeople) {"}</p>
+                                <p>{"       searchSummary = <p>There are {this.state.numberOfPeople} people going on your trip!</p>"}</p>
+                                <p>{"   } else {"}</p>
+                                <p>{"       searchSummary = <p>How many people are you taking with you?</p>"}</p>
+                                <p>{"   }"}</p>
+                                <p>{"   ..."}</p>
+                                <p>{"   return ("}</p>
+                                <p>{"       ..."}</p>
+                                <p>{"       {searchSummary}"}</p>
+                                <p>{"       ..."}</p>
+                                <p>{"    );"}</p>
+                                <p>{"}"}</p>    
+                              </code>
+                            </pre>                
+                          </div>
+                          This takes the current component state reflecting the number of people, and displays different text depending on whether a button has been selected or not.
+                        </li>
+                        <li>
+                          <p>Inline "if": using <span className="has-text-weight-bold is-family-code">"&&"</span></p>
+                          Here we have added another property to the <span className="is-family-code">PotentialPlace</span> component which gives each place an occupancy limit:
+                          <img src="/images/place_occupancy.PNG" />
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"{ this.state.numberOfPeople <= 4 &&"}</p>
+                                <p>{"   <PackLocation location={new models.PotentialPlace(\"Location 1: A nice house in the Cotswolds\", 4)} />"}</p>
+                                <p>{"}"}</p>    
+                              </code>
+                            </pre>                
+                          </div>   
+                          The use case here is that we are only showing locations that are appropriate to the number of people selected by the user.
+                        </li>
+                        <li>
+                          <p>Inline "if-else": using <span className="has-text-weight-bold is-family-code">"?"</span></p>
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"{this.state.destination ? "}</p>
+                                <p>{"   <p>You are going to {this.state.destination}</p>"}</p>
+                                <p>{"   :"}</p>
+                                <p>{"   this.state.numberOfPeople > 0 ? "}</p>
+                                <p>{"       <p>Choose somewhere you'd like to go :)</p> :"}</p>
+                                <p>{"       null"}</p>
+                                <p>{"}"}</p>  
+                              </code>
+                            </pre>                
+                          </div>
+                          <p>As you can see, this can be nested multiple times (although bear in mind that it gets increasingly hard to follow the logic!)</p>
+                          <p>The conditional can also return a "null" to the render method - this does not affect the firing of the component's lifecycle methods (i.e. componentDidUpdate would still be called)</p>
+                        </li>
+                      </ol>
+
+                      <p className="subtitle has-text-weight-bold is-uppercase">Styling classes</p>
+
+                      <p>If you want to add or remove dynamic classes, the practise is similar to showing/hiding the other content.</p>
+                      <p>Note: you need to wrap the whole class declaration in curly braces for this to work properly</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<a className={\"button is-primary \" + (this.state.numberOfPeople === 1 ? \"\" : \"is-outlined\")} onClick={e => this.updateNumberPeople(e, 1)}>1 person</a>"}</p> 
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>This will keep the "is-outlined" class on all buttons EXCEPT the one that has a matching number to the numberOfPeople defined in the current state</p>
+                    </div>
                   </div>
 
                   <hr />
