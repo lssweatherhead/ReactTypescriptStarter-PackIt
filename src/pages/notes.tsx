@@ -569,6 +569,52 @@ class Notes extends Component<any, IState> {
                       <p>The key property basically serves as React's way of uniquely identifying each element in an array and determining which ones have changed, are added or removed.</p>
                       <p>The key should be unique and, ideally, should be a property that we know is unique - in our case the place location id. The index of the map <span className="is-italic">could</span> be used, but this is not best practise. <a href="https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318">Read more about why we shouldn't use indexes as keys.</a></p>
                       <p>Note that keys only need to be unique among siblings - not within a wider scope of the component.</p>
+
+                      <p className="subtitle has-text-weight-bold">Filtering on state changes</p>
+
+                      <p>Remember that we have two functions that fire off when the the UI changes and update the state accordingly?</p>
+                      <p>These are:</p>
+                      <ul>
+                        <li><span className="is-family-code">updateNumberPeople</span> that takes an updated number of people from a button and saves it to the component state</li>
+                        <li><span className="is-family-code">handleDestinationChange</span> that propagates changes from the textbox into the state</li>
+                      </ul>
+
+                      <p>Well, now we want to take those changes and use them to filter the places accordingly. There are a few different ways we could do this, but if we bear in mind that usually we would be querying an external API for this data, we want to separate is as far as possible from our own component state.</p>
+                      <p>We can make use of the <span className="is-family-code">setState()</span> callback that is fired once the state has updated, so that our code would look like this:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"handleDestinationChange = (event: React.ChangeEvent<HTMLInputElement>) => {"}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"       destination: event.target.value"}</p>
+                            <p>{"   }, () => {"}</p>
+                            <p>{"       this.filterPlaces();"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"}"}</p>
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>And then in the <span className="is-family-code">filterPlaces()</span> function, we would set the state again using the updated state properties:</p>
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"filterPlaces = () => {"}</p>
+                            <p>{"   var places = this.state.places.filter(place => {"}</p>
+                            <p>{"       return (this.state.numberOfPeople === 0 || this.state.numberOfPeople <= place.maxOccupancy) &&"}</p>
+                            <p>{"               (this.state.destination === \"\" || place.location.toLowerCase().indexOf(this.state.destination.toLowerCase()) > -1);"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"   "}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"       filteredPlaces: places"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"}"}</p>
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>Now the place options filter when the user interacts with the app controls, and we have control over what is rendered within the repeater.</p>
                     </div>
 
                     <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-6-Lists-And-Keys"><i className="fab fa-github"></i> Check out the code here</a>
