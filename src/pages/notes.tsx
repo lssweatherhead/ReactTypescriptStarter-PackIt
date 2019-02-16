@@ -148,6 +148,8 @@ class Notes extends Component {
                   </div>
                 </div>
 
+                <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-2-Typescript-Object-Notation"><i className="fab fa-github"></i> Check out the code here</a>
+
               </div>
 
               <hr />
