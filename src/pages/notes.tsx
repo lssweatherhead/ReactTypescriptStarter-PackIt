@@ -27,8 +27,6 @@ class Notes extends Component<any, IState> {
                   <li><a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Forms & Events</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Conditional rendering</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 6)}>Part 6 - Using lists and keys</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 7)}>Part 7 - Filtering and sorting</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 8)}>Part 8 - Thinking in React and next steps</a></li>
                 </ul>
               </div>
             </div>
@@ -96,7 +94,77 @@ class Notes extends Component<any, IState> {
                     <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
 
                     <div className="is-family-secondary content">
-                      <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
+                      <p>Components are the building blocks of React.</p>
+                      <p>When you are looking at building an interactive app, it makes sense to split the different functionality/views up before you start coding so that you know how many components you might have and what part of the functional view they will be responsible for.</p>
+                      <p>You might also want to give some thought to how the components might talk to each other - what properties they might want to share or know about it as the user interacts with them.</p>
+
+                      <p>Say we have an aquarium of jellyfish. The aquarium wants to know what each jellyfish is called, but doesn't care about its colour.</p>
+                      <p>That relationship might look like this:</p>
+                      <img src="/images/props_downstream.jpeg" />
+                      <p>The aquarium passes down a name to the jellyfish component. The jellyfish component has a state of its own that keeps track of colour, and it can render both out - one in relation to "state" and one in relation to "props"</p>
+                    
+                      <p className="subtitle has-text-weight-bold is-uppercase">The pack-it app</p>
+
+                      <p>In our case, we are aiming to have a view that renders out a number of possible get-away destinations</p>
+                      <p>In its simplest case we have a main Home component, which has one or more possible location components within it.</p>
+                    
+                      <p>Let's say we're starting out with a really simple location component - just one property: "name" - so on its own it might look like this:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IProps {"}</p>
+                            <p>{"   name: string"}</p>
+                            <p>{"}"}</p>
+                            <p>{"     "}</p>
+                            <p>{"interface IState { }"}</p>
+                            <p>{"     "}</p>
+                            <p>{"class PackLocation extends Component<IProps, IState> {"}</p>
+                            <p>{"   render() {"}</p>
+                            <p>{"       return ("}</p>
+                            <p>{"           <div>{this.props.name}</div>"}</p>
+                            <p>{"       );"}</p>
+                            <p>{"   }"}</p>
+                            <p>{"}"}</p>
+                            <p>{"     "}</p>
+                            <p>{"export default PackLocation;"}</p>                   
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>So, a few points about what's going on here...</p>
+
+                      <ul>
+                        <li>There are two interfaces - IProps and IState (note the prefixed "I" indicating they are Typescript interfaces)</li>
+                        <li>Both interfaces can be passed into the React Component declaration, and allow us to define what inputs the Component is expecting when it is rendered within other Components</li>
+                        <li>The only thing we are rendering out is the name that is passed into the Component through the props.</li>
+                      </ul>
+
+                      <p>How do we pass that property in in the Home component?</p>
+
+                      <p>If we tried to render the component without any properties, then we would receive this error from the compiler:</p>
+                      <img src="/images/component_noprops.PNG" />
+                      <p>But if we start typing into the component tag, then we can see what it's expecting from us and also what type it's expecting that property to be:</p>
+                      <img src="/images/component_props.PNG" />
+
+                      <p>So really what we want in the Home component is something that looks like this:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<div className=\"container\">"}</p>
+                            <p>{"   <PackLocation name=\"Location 1: A nice house in the Cotswolds\" />"}</p>
+                            <p>{"   <PackLocation name=\"Location 2: A farmhouse in Shrewsbury\" />"}</p>
+                            <p>{"   <PackLocation name=\"Location 3: A city centre apartment in Manchester\" />"}</p>
+                            <p>{"}"}</p>                  
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>And that's all there is to it - we've built our first component and passed a property down to it from the parent.</p>
+
+                      <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-1-The-Pack-Component"><i className="fab fa-github"></i> Check out the code here</a>
+
                     </div>
                   </div>
 
@@ -264,6 +332,8 @@ class Notes extends Component<any, IState> {
                       <p>This will be called whenever a component is about to be destroyed and removed from the view.</p>
                     
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-3-State-And-Lifecyle"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
@@ -328,6 +398,8 @@ class Notes extends Component<any, IState> {
                       <img src="/images/react_events.PNG" />
                       
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-4-Basic-Forms-And-Input"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
@@ -338,6 +410,90 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 5 - Conditional rendering</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
+
+                      <p>There are a few different ways to show or hide content depending upon with component state</p>
+
+                      <ol className="far-space">
+                        <li>
+                          Using an element variable - we could use this for a search summary:
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"render() {"}</p>
+                                <p>{"   const hasSelectedPeople = this.state.numberOfPeople !== 0;"}</p>
+                                <p>{"   let searchSummary;"}</p>
+                                <p>{"   if (hasSelectedPeople) {"}</p>
+                                <p>{"       searchSummary = <p>There are {this.state.numberOfPeople} people going on your trip!</p>"}</p>
+                                <p>{"   } else {"}</p>
+                                <p>{"       searchSummary = <p>How many people are you taking with you?</p>"}</p>
+                                <p>{"   }"}</p>
+                                <p>{"   ..."}</p>
+                                <p>{"   return ("}</p>
+                                <p>{"       ..."}</p>
+                                <p>{"       {searchSummary}"}</p>
+                                <p>{"       ..."}</p>
+                                <p>{"    );"}</p>
+                                <p>{"}"}</p>    
+                              </code>
+                            </pre>                
+                          </div>
+                          This takes the current component state reflecting the number of people, and displays different text depending on whether a button has been selected or not.
+                        </li>
+                        <li>
+                          <p>Inline "if": using <span className="has-text-weight-bold is-family-code">"&&"</span></p>
+                          Here we have added another property to the <span className="is-family-code">PotentialPlace</span> component which gives each place an occupancy limit:
+                          <img src="/images/place_occupancy.PNG" />
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"{ this.state.numberOfPeople <= 4 &&"}</p>
+                                <p>{"   <PackLocation location={new models.PotentialPlace(\"Location 1: A nice house in the Cotswolds\", 4)} />"}</p>
+                                <p>{"}"}</p>    
+                              </code>
+                            </pre>                
+                          </div>   
+                          The use case here is that we are only showing locations that are appropriate to the number of people selected by the user.
+                        </li>
+                        <li>
+                          <p>Inline "if-else": using <span className="has-text-weight-bold is-family-code">"?"</span></p>
+                          <div className="is-family-code">
+                            <pre>
+                              <code>
+                                <p>{"{this.state.destination ? "}</p>
+                                <p>{"   <p>You are going to {this.state.destination}</p>"}</p>
+                                <p>{"   :"}</p>
+                                <p>{"   this.state.numberOfPeople > 0 ? "}</p>
+                                <p>{"       <p>Choose somewhere you'd like to go :)</p> :"}</p>
+                                <p>{"       null"}</p>
+                                <p>{"}"}</p>  
+                              </code>
+                            </pre>                
+                          </div>
+                          <p>As you can see, this can be nested multiple times (although bear in mind that it gets increasingly hard to follow the logic!)</p>
+                          <p>The conditional can also return a "null" to the render method - this does not affect the firing of the component's lifecycle methods (i.e. componentDidUpdate would still be called)</p>
+                        </li>
+                      </ol>
+
+                      <p className="subtitle has-text-weight-bold is-uppercase">Styling classes</p>
+
+                      <p>If you want to add or remove dynamic classes, the practise is similar to showing/hiding the other content.</p>
+                      <p>Note: you need to wrap the whole class declaration in curly braces for this to work properly</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<a className={\"button is-primary \" + (this.state.numberOfPeople === 1 ? \"\" : \"is-outlined\")} onClick={e => this.updateNumberPeople(e, 1)}>1 person</a>"}</p> 
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>This will keep the "is-outlined" class on all buttons EXCEPT the one that has a matching number to the numberOfPeople defined in the current state</p>
+                    </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-5-Conditional-Rendering"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
@@ -348,31 +504,81 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 6 - Using lists and keys</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="has-text-weight-bold">Know your <span className="is-family-code">map()</span> function</p>
+
+                      <p>So the <span className="is-family-code">map()</span> function is super important when working with arrays and lists in React. If you're a bit rusty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN web docs are your friend.</a></p>
+                      <p>Basically what we'll be doing will be using the <span className="is-family-code">map()</span> function to transform a list of objects or values into a list of elements that React can render</p>
+                      <p>First, let's add a couple of object arrays to our app state: <span className="is-family-code">places</span> and <span className="is-family-code">filteredPlaces</span>. These will both be of array type <span className="is-family-code">IPotentialPlace</span></p>
+                      <p>In a real-world app you would probably be getting this data from an API, but we are going to load it in from a JSON file and maintain the unfiltered list (places) so that we can manipulate the view without losing any data.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IState {"}</p>
+                            <p>{"   numberOfPeople: number;"}</p>
+                            <p>{"   destination: string;"}</p>
+                            <p>{"   places: models.IPotentialPlace[];"}</p>
+                            <p>{"   filteredPlaces: models.IPotentialPlace[];"}</p>
+                            <p>{"}"}</p>  
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>Now let's load in the JSON data <span className="is-family-code">onComponentMount()</span> and map it to our component state arrays.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"componentDidMount() {"}</p>
+                            <p>{"   var mappedLocations: models.IPotentialPlace[] = []"}</p>
+                            <p>{"   data.locations.map((loc, idx) => {"}</p>
+                            <p>{"       mappedLocations.push(new models.PotentialPlace(loc.id, loc.name, loc.description, loc.image, loc.maxOccupancy, loc.location))"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"   "}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"       places: mappedLocations,"}</p>
+                            <p>{"       filteredPlaces: mappedLocations"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"}"}</p>  
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>Here, for each object in the data we are loading it into the strongly typed <span className="is-family-code">PotentialPlace</span> model and then simply assigning the same array to both our arrays for their initial states.</p>
+                      <p>Now we have the array, we can load it into the <span className="is-family-code">render()</span> function, again using the <span className="is-family-code">map()</span> function.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<div className=\"columns is-multiline\">"}</p>
+                            <p>{"   {this.state.filteredPlaces.map((place, idx) => "}</p>
+                            <p>{"       <PackLocation key={place.id} location={place} />"}</p>
+                            <p>{"   )}"}</p>
+                            <p>{"</div>"}</p>
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p className="subtitle has-text-weight-bold">The importance of keys</p>
+
+                      <p>If you do not give an element that is being rendered a unique key then you will get an console error that looks like this:</p>
+                      <img src="/images/nokey.PNG"></img>
+
+                      <p>The key property basically serves as React's way of uniquely identifying each element in an array and determining which ones have changed, are added or removed.</p>
+                      <p>The key should be unique and, ideally, should be a property that we know is unique - in our case the place location id. The index of the map <span className="is-italic">could</span> be used, but this is not best practise. <a href="https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318">Read more about why we shouldn't use indexes as keys.</a></p>
+                      <p>Note that keys only need to be unique among siblings - not within a wider scope of the component.</p>
+                    </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-6-Lists-And-Keys"><i className="fab fa-github"></i> Check out the code here</a>
+                    
                   </div>
 
                   <hr />
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 7 || this.state.activeStep === undefined) &&
-                <React.Fragment>
-                  <div>
-                    <h3 className="subtitle is-size-4">Part 7 - Filtering and sorting</h3>
-                  </div>
-
-                  <hr />
-                </React.Fragment>
-              }
-
-              {(this.state.activeStep === 8 || this.state.activeStep === undefined) &&
-                <React.Fragment>
-                  <div>
-                    <h3 className="subtitle is-size-4">Part 8 - "Thinking in React" and next steps</h3>
-                  </div>
-
-                  <hr />
-                </React.Fragment>
-              }
             </div>
 
           </div>
