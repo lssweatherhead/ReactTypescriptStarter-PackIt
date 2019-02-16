@@ -500,6 +500,8 @@ class Notes extends Component<any, IState> {
                       <p>The key should be unique and, ideally, should be a property that we know is unique - in our case the place location id. The index of the map <span className="is-italic">could</span> be used, but this is not best practise. <a href="https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318">Read more about why we shouldn't use indexes as keys.</a></p>
                       <p>Note that keys only need to be unique among siblings - not within a wider scope of the component.</p>
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-6-Lists-And-Keys"><i className="fab fa-github"></i> Check out the code here</a>
                     
                   </div>
 
