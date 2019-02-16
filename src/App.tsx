@@ -19,17 +19,19 @@ class App extends Component<any, IState> {
   render() {
     return (
       <React.Fragment>
-        <a className="notes-link button is-medium is-outlined" href="" onClick={e => this.toggleNotes(e)}>
-          <span className="icon">
-            <i className="fas fa-eye"></i>
-          </span>
-          <span>{ this.state.showNotes ? "Show app" : "See notes"}</span>
-        </a>
+        <div className="notes">
+          <a className="notes-link button is-small is-outlined is-link" href="" onClick={e => this.toggleNotes(e)}>
+            <span className="icon">
+              <i className="fas fa-eye"></i>
+            </span>
+            <span>{ this.state.showNotes ? "Show app" : "See notes"}</span>
+          </a>
+        </div>
         {this.state.showNotes ?
           <Notes /> :
           <Home />
         }
-      </React.Fragment>     
+      </React.Fragment>    
     );
   }
 
