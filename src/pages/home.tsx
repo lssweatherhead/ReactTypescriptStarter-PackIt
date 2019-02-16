@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PackLocation from '../components/pack-location.component';
+import * as models from '../models';
 
 class Home extends Component {
   render() {
@@ -16,9 +17,9 @@ class Home extends Component {
         </div>
         <div className="hero">
           <div className="container">
-            <PackLocation name="Location 1: A nice house in the Cotswolds" />
-            <PackLocation name="Location 2: A farmhouse in Shrewsbury" />
-            <PackLocation name="Location 3: A city centre apartment in Manchester" />
+            <PackLocation location={new models.PackLocation("Location 1: A nice house in the Cotswolds")} />
+            <PackLocation location={new models.PackLocation("Location 2: A farmhouse in Shrewsbury")} />
+            <PackLocation location={new models.PackLocation("Location 3: A city centre apartment in Manchester")} />
           </div>
         </div>
       </React.Fragment>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import * as models from '../models';
 
 interface IProps {
-    name: string
+    location: models.IPackLocation
 } 
 
 interface IState { }
@@ -10,7 +11,7 @@ interface IState { }
 class PackLocation extends Component<IProps, IState> {
   render() {
     return (
-      <div>{this.props.name}</div>
+      <div>{this.props.location.name}</div>
     );
   }
 }

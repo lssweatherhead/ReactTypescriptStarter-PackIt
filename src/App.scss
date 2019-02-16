@@ -29,17 +29,28 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/elements/container.sass";
 @import "../node_modules/bulma/sass/elements/form.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/elements/content.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/grid/columns.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
 
 .site-name {
   color: $teal;
 }
 
-.notes-link {
-  margin-top: 3rem;
-  margin-left: 20px;
-  float: left;
+.notes {
+  //position: absolute;
+  margin: 1rem;
+}
 
+ul.cli-code {
+  list-style: none;
+
+  li:before {
+    content: "> ";
+  }
+}
+
+.column.fixed {
+  position: fixed;
 }

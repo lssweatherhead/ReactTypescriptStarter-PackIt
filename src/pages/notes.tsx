@@ -1,32 +1,151 @@
 import React, { Component } from 'react';
 
+
 class Notes extends Component {
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
     return (
       <React.Fragment>
-        <div className="section">
-            <div className="container">
-              <h1 className="title">Getting started with React & Typescript</h1>
-              <h2 className="subtitle is-family-secondary">
-                  Tutorial notes
-              </h2>
+        <div className="columns">
+          <div className="column is-one-third fixed">
+            <div className="section">
+              <div className="container">
+                <ul>
+                  <li><a href="" onClick={e => this.scrollTo(e, 0)}>Part 0 - Notes about project set-up</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 1)}>Part 1 - Component overview and Props</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 2)}>Part 2 - Typescript model declaration</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 3)}>Part 3 - State and Component lifecyle</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Basic forms and input</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Handling Events</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 6)}>Part 6 - Conditional rendering</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 7)}>Part 7 - Using lists and keys</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 8)}>Part 8 - Filtering and sorting</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 9)}>Part 9 - Thinking in React and next steps</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="column is-one-third"></div>
+          <div className="column">
+            <div id="sec0" className="section">
+              <div className="container">
+                <h1 className="title">Getting started with React & Typescript</h1>
+                <h2 className="subtitle is-family-secondary">
+                    Tutorial notes
+                </h2>
+              </div>
+
+              <hr />
+              
+              <div className="container">
+                <h3 className="subtitle is-size-4">Part 0 - Notes about project set-up</h3>
+                <div className="is-family-secondary content">
+                  <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
+                  <ol className="is-lower-roman" type="i">
+                    <li>Simple to get started bootstrapping a ReactJs app - easy to configure SCSS & Typescript</li>
+                    <li>Low barrier to getting to the starting line</li>
+                    <li>Easy command line build</li>
+                    <li>Easy to maintain</li>
+                    <li>Uses webpack under the hood - works great for simple config out of the box, but it's possible to add additional or more complex configuration by "ejecting" the default config and altering it as required.</li>
+                  </ol>
+                  <p>Get a local build running:</p>
+                  <ul className="cli-code">
+                    <li className="is-family-code has-text-weight-bold">npm install</li>
+                    <li className="is-family-code has-text-weight-bold">npm run start</li>
+                  </ul>
+                  
+                  <a href="https://github.com/facebook/create-react-app"><i className="fab fa-react"></i> Read more about Create React App</a>
+                  <hr />
+                  <p className="subtitle has-text-weight-bold is-uppercase">SASS</p>
+                  <p>Syntactically Awesome Style Sheets!</p>
+                  <p>A CSS pre-processor that allows you to write nested style rules, define reusable variables and introduces mixins for simplified/efficient rules (+ many, many other benefits above vanilla CSS)</p>
+                  <a href="https://sass-lang.com/"><i className="fab fa-sass"></i> Read more about SASS</a>
+                  <hr />
+                  <p className="subtitle has-text-weight-bold is-uppercase">Typescript</p>
+                  <p>Typescript compiles to clean, simple Javascript code which runs in any browser</p>
+                  <p className="is-italic">Why should I use Typescript?</p>
+                  <ul>
+                    <li>Typescript allows you to utilise tools like intellisense and static checking as you write code so that you can ensure that you have the fields or data that you would expect to have</li>
+                    <li>You can define interfaces and classes that are reusable between different components and allow for object inheritance and confidence in code integrity</li>
+                    <li>Enables a more robust application code build - strongly typed objects and methods provide greater clarity to the desired code behaviour, and this makes it easier to analyse and pick up other developer's code.</li>
+                  </ul>
+                  <a href="https://www.typescriptlang.org/index.html"><i className="fab fa-js-square"></i> Learn more about Typescript</a>
+                </div>
+              </div>
+              
+              <hr />
+
+              <div id="sec1" className="container">
+                <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec2" className="container">
+                <h3>Part 2</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec3" className="container">
+                <h3>Part 3</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec4" className="container">
+                <h3>Part 4</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec5" className="container">
+                <h3>Part 5</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec6" className="container">
+                <h3>Part 6</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec7" className="container">
+                <h3>Part 7</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec8" className="container">
+                <h3>Part 8</h3>
+              </div>
+
+              <hr />
+
+              <div id="sec9" className="container">
+                <h3>Part 9</h3>
+              </div>
             </div>
 
-            <hr />
-            
-            <div className="container">
-              <h3>Part 0</h3>
-            </div>
-            
-            <hr />
-
-            <div className="container">
-              <h3>Part 1</h3>
-            </div>
+          </div>
         </div>
-
+        
       </React.Fragment>
     );
+  }
+
+  scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, idx: number)  => {
+    event.preventDefault();
+    var section = document.getElementById("sec" + idx);
+
+    if (section) {
+      window.scrollTo(0, section.offsetTop);
+    }
+    
   }
 }
 
