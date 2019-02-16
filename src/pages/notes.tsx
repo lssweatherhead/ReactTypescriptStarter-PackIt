@@ -264,6 +264,8 @@ class Notes extends Component<any, IState> {
                       <p>This will be called whenever a component is about to be destroyed and removed from the view.</p>
                     
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-3-State-And-Lifecyle"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
@@ -328,6 +330,8 @@ class Notes extends Component<any, IState> {
                       <img src="/images/react_events.PNG" />
                       
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-4-Basic-Forms-And-Input"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
@@ -420,6 +424,8 @@ class Notes extends Component<any, IState> {
 
                       <p>This will keep the "is-outlined" class on all buttons EXCEPT the one that has a matching number to the numberOfPeople defined in the current state</p>
                     </div>
+
+                    <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-5-Conditional-Rendering"><i className="fab fa-github"></i> Check out the code here</a>
                   </div>
 
                   <hr />
