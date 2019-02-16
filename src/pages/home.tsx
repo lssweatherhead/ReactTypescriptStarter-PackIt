@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PackLocation from '../components/pack-location.component';
+import data from '../data/locations.json';
 import * as models from '../models';
 
 interface IState {
     numberOfPeople: number;
     destination: string;
+    places: models.IPotentialPlace[];
+    filteredPlaces: models.IPotentialPlace[];
 }
 
 class Home extends Component<any, IState> {
@@ -12,9 +15,24 @@ class Home extends Component<any, IState> {
         super(props);
         this.state = {
             numberOfPeople: 0,
-            destination: ""
+            destination: "",
+            places: [],
+            filteredPlaces: []
         };
     }
+
+    componentDidMount() {
+        var mappedLocations: models.IPotentialPlace[] = []
+        data.locations.map((loc, idx) => {
+            mappedLocations.push(new models.PotentialPlace(loc.id, loc.name, loc.description, loc.image, loc.maxOccupancy, loc.location))
+        });
+
+        this.setState({
+            places: mappedLocations,
+            filteredPlaces: mappedLocations
+        });
+    }
+    
 
     render() {
         const hasSelectedPeople = this.state.numberOfPeople !== 0;
@@ -73,16 +91,10 @@ class Home extends Component<any, IState> {
 
             <div className="hero">
                 <div className="container">
-                    <div className="columns">
-                        { this.state.numberOfPeople <= 4 &&
-                            <PackLocation location={new models.PotentialPlace("Location 1: A nice house in the Cotswolds", 4)} />
-                        }
-                        { this.state.numberOfPeople <= 8 &&
-                            <PackLocation location={new models.PotentialPlace("Location 2: A farmhouse in Shrewsbury", 8)} />
-                        }
-                        { this.state.numberOfPeople <= 3 &&
-                            <PackLocation location={new models.PotentialPlace("Location 3: A city centre apartment in Manchester", 3)} />
-                        }
+                    <div className="columns is-multiline">
+                        {this.state.filteredPlaces.map((place, idx) => 
+                            <PackLocation key={place.id} location={place} />
+                        )}
                     </div>
                 </div>
             </div>
@@ -94,13 +106,28 @@ class Home extends Component<any, IState> {
         event.preventDefault();
         this.setState({
             numberOfPeople: numberPeople
+        }, () => {
+            this.filterPlaces();
         });
     }
 
     handleDestinationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             destination: event.target.value
+        }, () => {
+            this.filterPlaces()
         });
+    }
+
+    filterPlaces = () => {
+        var places = this.state.places.filter(place => {
+            return (this.state.numberOfPeople === 0 || this.state.numberOfPeople <= place.maxOccupancy) &&
+                    (this.state.destination === "" || place.location.toLowerCase().indexOf(this.state.destination.toLowerCase()) > -1);
+        });
+
+        this.setState({
+            filteredPlaces: places
+        })
     }
 }
 

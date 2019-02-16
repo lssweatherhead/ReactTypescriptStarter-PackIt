@@ -8,7 +8,7 @@ class Notes extends Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeStep: 5
+      activeStep: 6
     }
   }
 
@@ -27,8 +27,6 @@ class Notes extends Component<any, IState> {
                   <li><a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Forms & Events</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Conditional rendering</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 6)}>Part 6 - Using lists and keys</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 7)}>Part 7 - Filtering and sorting</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 8)}>Part 8 - Thinking in React and next steps</a></li>
                 </ul>
               </div>
             </div>
@@ -436,31 +434,79 @@ class Notes extends Component<any, IState> {
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 6 - Using lists and keys</h3>
+
+                    <div className="is-family-secondary content">
+                      <p className="has-text-weight-bold">Know your <span className="is-family-code">map()</span> function</p>
+
+                      <p>So the <span className="is-family-code">map()</span> function is super important when working with arrays and lists in React. If you're a bit rusty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">MDN web docs are your friend.</a></p>
+                      <p>Basically what we'll be doing will be using the <span className="is-family-code">map()</span> function to transform a list of objects or values into a list of elements that React can render</p>
+                      <p>First, let's add a couple of object arrays to our app state: <span className="is-family-code">places</span> and <span className="is-family-code">filteredPlaces</span>. These will both be of array type <span className="is-family-code">IPotentialPlace</span></p>
+                      <p>In a real-world app you would probably be getting this data from an API, but we are going to load it in from a JSON file and maintain the unfiltered list (places) so that we can manipulate the view without losing any data.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IState {"}</p>
+                            <p>{"   numberOfPeople: number;"}</p>
+                            <p>{"   destination: string;"}</p>
+                            <p>{"   places: models.IPotentialPlace[];"}</p>
+                            <p>{"   filteredPlaces: models.IPotentialPlace[];"}</p>
+                            <p>{"}"}</p>  
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>Now let's load in the JSON data <span className="is-family-code">onComponentMount()</span> and map it to our component state arrays.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"componentDidMount() {"}</p>
+                            <p>{"   var mappedLocations: models.IPotentialPlace[] = []"}</p>
+                            <p>{"   data.locations.map((loc, idx) => {"}</p>
+                            <p>{"       mappedLocations.push(new models.PotentialPlace(loc.id, loc.name, loc.description, loc.image, loc.maxOccupancy, loc.location))"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"   "}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"       places: mappedLocations,"}</p>
+                            <p>{"       filteredPlaces: mappedLocations"}</p>
+                            <p>{"   });"}</p>
+                            <p>{"}"}</p>  
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p>Here, for each object in the data we are loading it into the strongly typed <span className="is-family-code">PotentialPlace</span> model and then simply assigning the same array to both our arrays for their initial states.</p>
+                      <p>Now we have the array, we can load it into the <span className="is-family-code">render()</span> function, again using the <span className="is-family-code">map()</span> function.</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<div className=\"columns is-multiline\">"}</p>
+                            <p>{"   {this.state.filteredPlaces.map((place, idx) => "}</p>
+                            <p>{"       <PackLocation key={place.id} location={place} />"}</p>
+                            <p>{"   )}"}</p>
+                            <p>{"</div>"}</p>
+                          </code>
+                        </pre>
+                      </div>
+
+                      <p className="subtitle has-text-weight-bold">The importance of keys</p>
+
+                      <p>If you do not give an element that is being rendered a unique key then you will get an console error that looks like this:</p>
+                      <img src="/images/nokey.PNG"></img>
+
+                      <p>The key property basically serves as React's way of uniquely identifying each element in an array and determining which ones have changed, are added or removed.</p>
+                      <p>The key should be unique and, ideally, should be a property that we know is unique - in our case the place location id. The index of the map <span className="is-italic">could</span> be used, but this is not best practise. <a href="https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318">Read more about why we shouldn't use indexes as keys.</a></p>
+                      <p>Note that keys only need to be unique among siblings - not within a wider scope of the component.</p>
+                    </div>
+                    
                   </div>
 
                   <hr />
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 7 || this.state.activeStep === undefined) &&
-                <React.Fragment>
-                  <div>
-                    <h3 className="subtitle is-size-4">Part 7 - Filtering and sorting</h3>
-                  </div>
-
-                  <hr />
-                </React.Fragment>
-              }
-
-              {(this.state.activeStep === 8 || this.state.activeStep === undefined) &&
-                <React.Fragment>
-                  <div>
-                    <h3 className="subtitle is-size-4">Part 8 - "Thinking in React" and next steps</h3>
-                  </div>
-
-                  <hr />
-                </React.Fragment>
-              }
             </div>
 
           </div>

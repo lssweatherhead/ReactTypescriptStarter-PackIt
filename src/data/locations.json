@@ -1,0 +1,52 @@
+{
+    "locations": [
+        {
+            "id": 0,
+            "name": "The White House",
+            "description": "A little bleak, but warm inside. Promise.",
+            "image": "/content/house1.jpg",
+            "maxOccupancy": 3,
+            "location": "Scotland"
+        },
+        {
+            "id": 1,
+            "name": "Country Mansion",
+            "description": "We have a lot of bathrooms. Don't go in the west wing.",
+            "image": "/content/house2.jpg",
+            "maxOccupancy": 16,
+            "location": "Wiltshire"
+        },
+        {
+            "id": 2,
+            "name": "Pet-friendly Humble Abode",
+            "description": "Bring everyone and the dog. House-trained only please.",
+            "image": "/content/house3.jpg",
+            "maxOccupancy": 8,
+            "location": "Yorkshire"
+        },
+        {
+            "id": 3,
+            "name": "Beach House",
+            "description": "Great for pool parties - if you don't mind the nippy Cornwall winters.",
+            "image": "/content/house4.jpg",
+            "maxOccupancy": 6,
+            "location": "Cornwall"
+        },
+        {
+            "id": 4,
+            "name": "The Cabin",
+            "description": "Get away from it all. No really, from everything. We have no internet.",
+            "image": "/content/house5.jpg",
+            "maxOccupancy": 4,
+            "location": "Derbyshire"
+        },
+        {
+            "id": 5,
+            "name": "Lakeview Hut",
+            "description": "It might look a little ramshackled, but really lovely. The grass only grows inside the hut a little bit.",
+            "image": "/content/house6.jpg",
+            "maxOccupancy": 2,
+            "location": "Kent"
+        }
+    ]
+}

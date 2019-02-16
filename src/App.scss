@@ -55,10 +55,14 @@ ol.far-space {
   li {
     padding: 15px 0;
 
-    .is-family-code, img {
+    img {
       padding: 15px 0;
     }
   }
+}
+
+.is-family-code {
+  padding: 15px 0;
 }
 
 .column.fixed {
