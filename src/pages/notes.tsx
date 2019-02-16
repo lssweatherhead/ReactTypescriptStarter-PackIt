@@ -8,7 +8,7 @@ class Notes extends Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeStep: 3
+      activeStep: 4
     }
   }
 
@@ -24,12 +24,11 @@ class Notes extends Component<any, IState> {
                   <li><a href="" onClick={e => this.scrollTo(e, 1)}>Part 1 - Component overview and Props</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 2)}>Part 2 - Typescript model declaration</a></li>
                   <li><a href="" onClick={e => this.scrollTo(e, 3)}>Part 3 - State and Component lifecyle</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Basic forms and input</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Handling Events</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 6)}>Part 6 - Conditional rendering</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 7)}>Part 7 - Using lists and keys</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 8)}>Part 8 - Filtering and sorting</a></li>
-                  <li><a href="" onClick={e => this.scrollTo(e, 9)}>Part 9 - Thinking in React and next steps</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Forms & Events</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Conditional rendering</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 6)}>Part 6 - Using lists and keys</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 7)}>Part 7 - Filtering and sorting</a></li>
+                  <li><a href="" onClick={e => this.scrollTo(e, 8)}>Part 8 - Thinking in React and next steps</a></li>
                 </ul>
               </div>
             </div>
@@ -211,7 +210,7 @@ class Notes extends Component<any, IState> {
 
                       <p>All this is doing is telling our component that it has a property <span className="is-family-code">numberOfPeople</span> (which is a <span className="is-family-code">number</span>), and that the initial state of the component is that there are 0 people going away.</p>
                       <p>Note how we pass props to the base constructor. Class components should always call the base constructor with <span className="is-family-code">props</span>.</p>
-                      <p>Now, if we allow the user to select from a list of options (1 person, 2 people, 3 people... etc) and fire off an event with the selected number (see more on this in <a href="" onClick={e => this.scrollTo(e, 5)}>Part 5 - Handling events</a>) then this will set the state appropriately:</p>
+                      <p>Now, if we allow the user to select from a list of options (1 person, 2 people, 3 people... etc) and fire off an event with the selected number (see more on this in <a href="" onClick={e => this.scrollTo(e, 4)}>Part 4 - Forms & Events</a>) then this will set the state appropriately:</p>
 
                       <div className="is-family-code">
                         <pre>
@@ -274,7 +273,61 @@ class Notes extends Component<any, IState> {
               {(this.state.activeStep === 4 || this.state.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
-                    <h3 className="subtitle is-size-4">Part 4 - Basic forms and input</h3>
+                    <h3 className="subtitle is-size-4">Part 4 - Forms & Events</h3>
+
+                    <div className="is-family-secondary content">
+                      <p>Okay, so now let's find out where people want to go by adding a simple text field to our app.</p>
+
+                      <p>First, we'll update the state so that we can track our new <span className="is-family-code">destination</span> string field.</p>
+                      
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IState {"}</p>
+                            <p>{"   numberOfPeople: number;"}</p>
+                            <p>{"   destination: string;"}</p>
+                            <p>{"}"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>Now, let's add the text field to the render view</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<label className=\"label\">Where do you want to go?</label>"}</p>
+                            <p>{"<div className=\"control\">"}</p>
+                            <p>{"   <input className=\"input\" type=\"text\" value={this.state.destination} onChange={this.handleDestinationChange} placeholder=\"Destination\" />"}</p>
+                            <p>{"</div>"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>The important things to note here are that the <span className="is-family-code">value</span> field is set to <span className="is-family-code">this.state.destination</span> and that there is a function in the <span className="is-family-code">onChange</span> listener.</p>
+                      <p className="has-text-weight-bold">If there is no onChange handler, then it will compile but you will see an error in the console:</p>
+                      <img src="/images/input_noonchange.PNG" />
+                      <p><span className="is-family-code">handleDestinationChange</span> will be called on every keystroke, so we can use this to make sure that the component state field is always up-to-date with the user input.</p>
+                      <p>The function that will call the state update looks like this:</p>
+                      
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"handleDestinationChange = (event: React.ChangeEvent<HTMLInputElement>) => {"}</p>
+                            <p>{"   this.setState({"}</p>
+                            <p>{"     destination: event.target.value"}</p>
+                            <p>{"  });"}</p>
+                            <p>{"}"}</p>                     
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>You will notice that when using Typescript, it will demand that all arguments are typed - even the ones that are raised from React. This can be a little frustrating if you're not sure what's getting passed back and forth under the hood.</p>
+                      <p>One way of working this out is to interrogate the underlying type definitions. In VS Code, this is as easy as hovering over the function and reading the help text:</p>
+
+                      <img src="/images/react_events.PNG" />
+                      
+                    </div>
                   </div>
 
                   <hr />
@@ -284,7 +337,7 @@ class Notes extends Component<any, IState> {
               {(this.state.activeStep === 5 || this.state.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
-                    <h3 className="subtitle is-size-4">Part 5 - Handling events</h3>
+                    <h3 className="subtitle is-size-4">Part 5 - Conditional rendering</h3>
                   </div>
 
                   <hr />
@@ -294,7 +347,7 @@ class Notes extends Component<any, IState> {
               {(this.state.activeStep === 6 || this.state.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
-                    <h3 className="subtitle is-size-4">Part 6 - Conditional rendering</h3>
+                    <h3 className="subtitle is-size-4">Part 6 - Using lists and keys</h3>
                   </div>
 
                   <hr />
@@ -304,7 +357,7 @@ class Notes extends Component<any, IState> {
               {(this.state.activeStep === 7 || this.state.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
-                    <h3 className="subtitle is-size-4">Part 7 - Using lists and keys</h3>
+                    <h3 className="subtitle is-size-4">Part 7 - Filtering and sorting</h3>
                   </div>
 
                   <hr />
@@ -314,17 +367,7 @@ class Notes extends Component<any, IState> {
               {(this.state.activeStep === 8 || this.state.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
-                    <h3 className="subtitle is-size-4">Part 8 - Filtering and sorting</h3>
-                  </div>
-
-                  <hr />
-                </React.Fragment>
-              }
-
-              {(this.state.activeStep === 9 || this.state.activeStep === undefined) &&
-                <React.Fragment>
-                  <div>
-                    <h3 className="subtitle is-size-4">Part 9 - "Thinking in React" and next steps</h3>
+                    <h3 className="subtitle is-size-4">Part 8 - "Thinking in React" and next steps</h3>
                   </div>
 
                   <hr />

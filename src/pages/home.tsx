@@ -4,26 +4,16 @@ import * as models from '../models';
 
 interface IState {
     numberOfPeople: number;
+    destination: string;
 }
 
 class Home extends Component<any, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            numberOfPeople: 0
+            numberOfPeople: 0,
+            destination: ""
         };
-    }
-
-    componentDidMount() {
-      console.log("Home component mounted!")
-    }
-
-    componentDidUpdate(prevProps: any, prevState: IState) {
-      console.log("Used to have: " + prevState.numberOfPeople + " people, but now have: " + this.state.numberOfPeople + " people");
-    }
-    
-    componentWillUnmount() {
-        console.log("Home component unmounted");
     }
 
     render() {
@@ -40,7 +30,7 @@ class Home extends Component<any, IState> {
 
             <div className="section">
                 <div className="container">
-                <label className="label">How many people are going away?</label>
+                    <label className="label">How many people are going away?</label>
                     <div className="buttons">
                         <a className="button is-primary is-outlined" onClick={e => this.updateNumberPeople(e, 1)}>1 person</a>
                         <a className="button is-primary is-outlined" onClick={e => this.updateNumberPeople(e, 2)}>2 people</a>
@@ -53,7 +43,15 @@ class Home extends Component<any, IState> {
                         <a className="button is-primary is-outlined" onClick={e => this.updateNumberPeople(e, 9)}>9 people</a>
                         <a className="button is-primary is-outlined" onClick={e => this.updateNumberPeople(e, 10)}>10 people</a>
                     </div>
-                    <p>There are {this.state.numberOfPeople} people going on your trip!</p>
+
+                    <div className="field">
+                        <label className="label">Where do you want to go?</label>
+                        <div className="control">
+                            <input className="input" type="text" value={this.state.destination} onChange={this.handleDestinationChange} placeholder="Destination" />
+                        </div>
+                    </div>
+
+                    <p>There are {this.state.numberOfPeople} people going on your trip and you are going to {this.state.destination ? this.state.destination : "stay at home"}!</p>
                 </div>
             </div>
 
@@ -72,6 +70,12 @@ class Home extends Component<any, IState> {
         event.preventDefault();
         this.setState({
             numberOfPeople: numberPeople
+        });
+    }
+
+    handleDestinationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            destination: event.target.value
         });
     }
 }
