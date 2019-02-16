@@ -94,7 +94,77 @@ class Notes extends Component<any, IState> {
                     <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
 
                     <div className="is-family-secondary content">
-                      <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
+                      <p>Components are the building blocks of React.</p>
+                      <p>When you are looking at building an interactive app, it makes sense to split the different functionality/views up before you start coding so that you know how many components you might have and what part of the functional view they will be responsible for.</p>
+                      <p>You might also want to give some thought to how the components might talk to each other - what properties they might want to share or know about it as the user interacts with them.</p>
+
+                      <p>Say we have an aquarium of jellyfish. The aquarium wants to know what each jellyfish is called, but doesn't care about its colour.</p>
+                      <p>That relationship might look like this:</p>
+                      <img src="/images/props_downstream.jpeg" />
+                      <p>The aquarium passes down a name to the jellyfish component. The jellyfish component has a state of its own that keeps track of colour, and it can render both out - one in relation to "state" and one in relation to "props"</p>
+                    
+                      <p className="subtitle has-text-weight-bold is-uppercase">The pack-it app</p>
+
+                      <p>In our case, we are aiming to have a view that renders out a number of possible get-away destinations</p>
+                      <p>In its simplest case we have a main Home component, which has one or more possible location components within it.</p>
+                    
+                      <p>Let's say we're starting out with a really simple location component - just one property: "name" - so on its own it might look like this:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"interface IProps {"}</p>
+                            <p>{"   name: string"}</p>
+                            <p>{"}"}</p>
+                            <p>{"     "}</p>
+                            <p>{"interface IState { }"}</p>
+                            <p>{"     "}</p>
+                            <p>{"class PackLocation extends Component<IProps, IState> {"}</p>
+                            <p>{"   render() {"}</p>
+                            <p>{"       return ("}</p>
+                            <p>{"           <div>{this.props.name}</div>"}</p>
+                            <p>{"       );"}</p>
+                            <p>{"   }"}</p>
+                            <p>{"}"}</p>
+                            <p>{"     "}</p>
+                            <p>{"export default PackLocation;"}</p>                   
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>So, a few points about what's going on here...</p>
+
+                      <ul>
+                        <li>There are two interfaces - IProps and IState (note the prefixed "I" indicating they are Typescript interfaces)</li>
+                        <li>Both interfaces can be passed into the React Component declaration, and allow us to define what inputs the Component is expecting when it is rendered within other Components</li>
+                        <li>The only thing we are rendering out is the name that is passed into the Component through the props.</li>
+                      </ul>
+
+                      <p>How do we pass that property in in the Home component?</p>
+
+                      <p>If we tried to render the component without any properties, then we would receive this error from the compiler:</p>
+                      <img src="/images/component_noprops.PNG" />
+                      <p>But if we start typing into the component tag, then we can see what it's expecting from us and also what type it's expecting that property to be:</p>
+                      <img src="/images/component_props.PNG" />
+
+                      <p>So really what we want in the Home component is something that looks like this:</p>
+
+                      <div className="is-family-code">
+                        <pre>
+                          <code>
+                            <p>{"<div className=\"container\">"}</p>
+                            <p>{"   <PackLocation name=\"Location 1: A nice house in the Cotswolds\" />"}</p>
+                            <p>{"   <PackLocation name=\"Location 2: A farmhouse in Shrewsbury\" />"}</p>
+                            <p>{"   <PackLocation name=\"Location 3: A city centre apartment in Manchester\" />"}</p>
+                            <p>{"}"}</p>                  
+                          </code>
+                        </pre>                
+                      </div>
+
+                      <p>And that's all there is to it - we've built our first component and passed a property down to it from the parent.</p>
+
+                      <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-1-The-Pack-Component"><i className="fab fa-github"></i> Check out the code here</a>
+
                     </div>
                   </div>
 
