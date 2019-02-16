@@ -115,7 +115,7 @@ class Home extends Component<any, IState> {
         this.setState({
             destination: event.target.value
         }, () => {
-            this.filterPlaces()
+            this.filterPlaces();
         });
     }
 
@@ -127,7 +127,7 @@ class Home extends Component<any, IState> {
 
         this.setState({
             filteredPlaces: places
-        })
+        });
     }
 }
 
