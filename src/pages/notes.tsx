@@ -29,7 +29,7 @@ class Notes extends Component {
             </div>
           </div>
           <div className="column is-one-third"></div>
-          <div className="column">
+          <div className="column is-two-thirds">
             <div id="sec0" className="section">
               <div className="container">
                 <h1 className="title">Getting started with React & Typescript</h1>
@@ -40,7 +40,7 @@ class Notes extends Component {
 
               <hr />
               
-              <div className="container">
+              <div className="">
                 <h3 className="subtitle is-size-4">Part 0 - Notes about project set-up</h3>
                 <div className="is-family-secondary content">
                   <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
@@ -78,55 +78,117 @@ class Notes extends Component {
               
               <hr />
 
-              <div id="sec1" className="container">
+              <div id="sec1" className="">
                 <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
               </div>
 
               <hr />
 
-              <div id="sec2" className="container">
-                <h3>Part 2</h3>
+              <div id="sec2" className="">
+                <h3 className="subtitle is-size-4">Part 2 - Typescript model declaration</h3>
+
+                <div className="is-family-secondary content">
+                  <p>Time to start adding some models to our <span className="is-family-code">PackLocation</span> component</p>
+                  <p>At the moment we only have one property: <span className="is-family-code">name</span> - so let's use that as a starting point.</p>
+                  <p>We're going to create a new folder: "models" and add <span className="is-family-code">potential-place.model.tsx</span> under that. We will also add an <span className="is-family-code">index.tsx</span> file that exports all (*) from the new model file. I do this because it makes the importing process a bit neater (in my opinion) and prompts you to think about what you're actually importing into your files.</p>
+
+                  <div className="is-family-code">
+                    <pre>
+                      <code>
+                        <p>{"export interface IPotentialPlace {"}</p>
+                        <p>{"   name: string;"}</p>
+                        <p>{"}"}</p>
+                        <p>{"     "}</p>
+                        <p>{"export class PotentialPlace implements IPotentialPlace { "}</p>
+                        <p>{"   constructor(public name: string) { "}</p>
+                        <p>{"   }"}</p>
+                        <p>{"}"}</p>                     
+                      </code>
+                    </pre>                
+                  </div>
+
+                  <p>As you can see this is a super simple class with the one public property "name" which we have designated as a <span className="is-family-code">string</span> property type.</p>
+                  <p>We will start building on this more later, but this is what a simple model declaration could look like.</p>
+                  <p>Now, let's use this model as part of our component props:</p>
+                  <div className="is-family-code">
+                    <pre>
+                      <code>
+                        <p>{"import * as models from '../models';"}</p>
+                        <p>{"     "}</p>
+                        <p>{"interface IProps {"}</p>
+                        <p>{"   location: models.IPotentialPlace"}</p>
+                        <p>{"}"}</p>
+                        <p>{"     "}</p>
+                        <p>{"class PackLocation extends Component<IProps, IState> {"}</p>
+                        <p>{"   render() {"}</p>
+                        <p>{"       return ("}</p>
+                        <p>{"           <div>{this.props.location.name}</div>"}</p>
+                        <p>{"       );"}</p>
+                        <p>{"   }"}</p>
+                        <p>{"}"}</p>                     
+                      </code>
+                    </pre>                
+                  </div>
+
+                  <p>When we are adding this to the properties and including it in the render return function, we will now see intellisense indicating what fields are available!</p>
+                  <img src="/images/typedmodel_intellisense.PNG" />
+                  <p>Of course, we will also have to update <span className="is-family-code">home.tsx</span> to now pass a <span className="is-family-code">PotentialPlace</span> model instead of the <span className="is-family-code">string</span> that it was passing before.</p>
+                  <p>That will now look like:</p>
+
+                  <div className="is-family-code">
+                    <pre>
+                      <code>
+                        <p>{"<div className=\"container\">"}</p>
+                        <p>{"   <PackLocation location={new models.PotentialPlace(\"Location 1: A nice house in the Cotswolds\")} />"}</p>
+                        <p>{"   <PackLocation location={new models.PotentialPlace(\"Location 2: A farmhouse in Shrewsbury\")} />"}</p>
+                        <p>{"   <PackLocation location={new models.PotentialPlace(\"Location 3: A city centre apartment in Manchester\")} />"}</p>
+                        <p>{"</div>"}</p>              
+                      </code>
+                    </pre>                
+                  </div>
+                </div>
+
               </div>
 
               <hr />
 
-              <div id="sec3" className="container">
+              <div id="sec3" className="">
                 <h3>Part 3</h3>
               </div>
 
               <hr />
 
-              <div id="sec4" className="container">
+              <div id="sec4" className="">
                 <h3>Part 4</h3>
               </div>
 
               <hr />
 
-              <div id="sec5" className="container">
+              <div id="sec5" className="">
                 <h3>Part 5</h3>
               </div>
 
               <hr />
 
-              <div id="sec6" className="container">
+              <div id="sec6" className="">
                 <h3>Part 6</h3>
               </div>
 
               <hr />
 
-              <div id="sec7" className="container">
+              <div id="sec7" className="">
                 <h3>Part 7</h3>
               </div>
 
               <hr />
 
-              <div id="sec8" className="container">
+              <div id="sec8" className="">
                 <h3>Part 8</h3>
               </div>
 
               <hr />
 
-              <div id="sec9" className="container">
+              <div id="sec9" className="">
                 <h3>Part 9</h3>
               </div>
             </div>

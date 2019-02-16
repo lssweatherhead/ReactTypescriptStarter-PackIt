@@ -1,1 +1,1 @@
-export * from "./pack-location.model";
+export * from "./potential-place.model";

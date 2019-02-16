@@ -17,9 +17,9 @@ class Home extends Component {
         </div>
         <div className="hero">
           <div className="container">
-            <PackLocation location={new models.PackLocation("Location 1: A nice house in the Cotswolds")} />
-            <PackLocation location={new models.PackLocation("Location 2: A farmhouse in Shrewsbury")} />
-            <PackLocation location={new models.PackLocation("Location 3: A city centre apartment in Manchester")} />
+            <PackLocation location={new models.PotentialPlace("Location 1: A nice house in the Cotswolds")} />
+            <PackLocation location={new models.PotentialPlace("Location 2: A farmhouse in Shrewsbury")} />
+            <PackLocation location={new models.PotentialPlace("Location 3: A city centre apartment in Manchester")} />
           </div>
         </div>
       </React.Fragment>

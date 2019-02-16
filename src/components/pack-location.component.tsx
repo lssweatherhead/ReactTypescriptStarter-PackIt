@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as models from '../models';
 
 interface IProps {
-    location: models.IPackLocation
+    location: models.IPotentialPlace
 } 
 
 interface IState { }
