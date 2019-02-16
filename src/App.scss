@@ -13,8 +13,6 @@ $family-primary: 'Luckiest Guy', cursive;
 $family-secondary: 'Raleway', sans-serif;
 $primary: $teal;
 $link: $green;
-$widescreen-enabled: true;
-$fullhd-enabled: true;
 
 // Update some of Bulma's component variables
 $body-background-color: $grey-light;
@@ -29,17 +27,48 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/elements/container.sass";
 @import "../node_modules/bulma/sass/elements/form.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/elements/content.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/grid/columns.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/sass/elements/icon.sass";
+@import "../node_modules/bulma/sass/components/card.sass";
 
 .site-name {
   color: $teal;
 }
 
-.notes-link {
-  margin-top: 3rem;
-  margin-left: 20px;
-  float: left;
+.notes {
+  //position: absolute;
+  margin: 1rem;
+}
 
+.is-family-code {
+  padding: 15px 0;
+}
+
+ul.cli-code {
+  list-style: none;
+
+  li {
+    padding: 0;
+  }
+
+  li:before {
+    content: "> ";
+  }
+}
+
+ol.far-space {
+  li {
+    padding: 15px 0;
+
+    img {
+      padding: 15px 0;
+    }
+  }
+}
+
+.column.fixed {
+  position: fixed;
 }
