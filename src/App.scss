@@ -72,3 +72,10 @@ ol.far-space {
 .column.fixed {
   position: fixed;
 }
+
+.notes {
+  position: fixed;
+  top: -3px;
+  display: block;
+  z-index: 999;
+}
