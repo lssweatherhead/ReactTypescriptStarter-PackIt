@@ -12,7 +12,7 @@ class App extends Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      showNotes: false
+      showNotes: true
     };
   }
 
