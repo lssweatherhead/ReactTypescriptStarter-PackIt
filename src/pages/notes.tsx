@@ -4,7 +4,11 @@ interface IState {
   activeStep?: number
 }
 
-class Notes extends Component<any, IState> {
+interface IProps {
+  toggleState: (event: React.MouseEvent<HTMLAnchorElement>) => void
+}
+
+class Notes extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -106,6 +110,9 @@ class Notes extends Component<any, IState> {
                       <p className="subtitle has-text-weight-bold is-uppercase">The pack-it app</p>
 
                       <p>In our case, we are aiming to have a view that renders out a number of possible get-away destinations</p>
+                      <p>Something that will look like this:</p>
+                      <img src="/images/app_overview.PNG" />
+
                       <p>In its simplest case we have a main Home component, which has one or more possible location components within it.</p>
                     
                       <p>Let's say we're starting out with a really simple location component - just one property: "name" - so on its own it might look like this:</p>
@@ -162,6 +169,7 @@ class Notes extends Component<any, IState> {
                       </div>
 
                       <p>And that's all there is to it - we've built our first component and passed a property down to it from the parent.</p>
+                      <p><a href="" onClick={this.props.toggleState}>Take a look at what the app looks like currently</a></p>
 
                       <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-1-The-Pack-Component"><i className="fab fa-github"></i> Check out the code here</a>
 

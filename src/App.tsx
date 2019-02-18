@@ -21,7 +21,7 @@ class App extends Component<any, IState> {
     return (
       <React.Fragment>
         <div className="notes">
-          <a className="notes-link button is-small is-outlined is-link" href="" onClick={e => this.toggleNotes(e)}>
+          <a className="notes-link button is-small is-outlined is-link" href="" onClick={this.toggleNotes}>
             <span className="icon">
               <i className="fas fa-eye"></i>
             </span>
@@ -29,7 +29,7 @@ class App extends Component<any, IState> {
           </a>
         </div>
         {this.state.showNotes ?
-          <Notes /> :
+          <Notes toggleState={this.toggleNotes} /> :
           <Home />
         }
       </React.Fragment>     

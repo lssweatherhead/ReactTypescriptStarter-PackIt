@@ -43,8 +43,16 @@ $input-shadow: none;
   margin: 1rem;
 }
 
+.is-family-code {
+  padding: 15px 0;
+}
+
 ul.cli-code {
   list-style: none;
+
+  li {
+    padding: 0;
+  }
 
   li:before {
     content: "> ";
@@ -55,7 +63,7 @@ ol.far-space {
   li {
     padding: 15px 0;
 
-    .is-family-code, img {
+    img {
       padding: 15px 0;
     }
   }
@@ -63,4 +71,11 @@ ol.far-space {
 
 .column.fixed {
   position: fixed;
+}
+
+.notes {
+  position: fixed;
+  top: -3px;
+  display: block;
+  z-index: 999;
 }
