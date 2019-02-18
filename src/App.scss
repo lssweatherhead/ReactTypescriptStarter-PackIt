@@ -48,7 +48,7 @@ $input-shadow: none;
 }
 
 .section.is-regular {
-  padding: 4.5rem 1.5rem;
+  padding: 7.5rem 1.5rem 2em;
 }
 
 ul.cli-code {
@@ -73,6 +73,10 @@ ol.far-space {
   }
 }
 
+.columns.padded {
+  padding-top: 4.5rem;
+}
+
 .column.fixed {
   position: fixed;
 }
@@ -80,6 +84,14 @@ ol.far-space {
 .notes {
   position: fixed;
   top: -3px;
+  left: 30%;
   display: block;
   z-index: 999;
+  padding: 10px;
+  background-color: white;
+}
+
+.pack-it-demo, iframe {
+  min-height: 316px;
+  margin: 1.5rem 0;
 }

@@ -7,15 +7,19 @@ import Notes from './pages/notes';
 
 interface IState {
   showNotes: boolean,
-  activeStep: number
+  activeStep?: number
 }
 
-class App extends Component<any, IState> {
-  constructor(props: any) {
+interface IProps {
+  currentStep: number
+}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       showNotes: false,
-      activeStep: 5
+      activeStep: props.currentStep
     };
   }
 
@@ -23,9 +27,9 @@ class App extends Component<any, IState> {
     return (
       <React.Fragment>
         <div className="notes">
-          <div className="buttons are-small">
-            {this.state.activeStep >= 0 &&
-              <a className="button is-text" href={"http://tutorials.lauraweatherhead.co.uk/react-typescript/step-" + (this.state.activeStep - 1)}>
+          <div className="buttons">
+            {this.props.currentStep > 0 &&
+              <a className="button is-text" href={"http://tutorials.lauraweatherhead.co.uk/react-typescript/step-" + (this.props.currentStep - 1)}>
                 <span className="icon">
                   <i className="fas fa-arrow-left"></i>
                 </span>
@@ -37,11 +41,11 @@ class App extends Component<any, IState> {
               <span className="icon">
                 <i className="fas fa-eye"></i>
               </span>
-              <span>{ this.state.showNotes ? "Show app" : "See notes"}</span>
+              <span>{ this.state.showNotes ? "Show app [step " + this.props.currentStep + "]" : "See notes [step " + this.props.currentStep + "]"}</span>
             </a>
 
-            {this.state.activeStep < 6 &&
-              <a className="button is-text" href={"http://tutorials.lauraweatherhead.co.uk/react-typescript/step-" + (this.state.activeStep + 1)}>
+            {this.props.currentStep < 6 &&
+              <a className="button is-text" href={"http://tutorials.lauraweatherhead.co.uk/react-typescript/step-" + (this.props.currentStep + 1)}>
                 <span>Next step</span>
                 <span className="icon">
                   <i className="fas fa-arrow-right"></i>
@@ -51,18 +55,24 @@ class App extends Component<any, IState> {
           </div>
         </div>
         {this.state.showNotes ?
-          <Notes toggleState={this.toggleNotes} activeStep={this.state.activeStep} /> :
+          <Notes toggleState={this.toggleNotes} activeStep={this.state.activeStep} setActiveStep={this.toggleActiveStep} /> :
           <Home />
         }
       </React.Fragment>     
     );
   }
 
+  toggleActiveStep = (stepNumber?: number) => {
+    this.setState({
+      activeStep: stepNumber
+    });
+  }
+
   toggleNotes = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     this.setState({
       showNotes: !this.state.showNotes
-    })
+    });
   }
 }
 
