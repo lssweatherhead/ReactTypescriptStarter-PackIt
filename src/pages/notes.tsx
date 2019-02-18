@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 
 interface IState {
-  activeStep?: number
 }
 
-class Notes extends Component<any, IState> {
+interface IProps {
+  activeStep?: number,
+  setActiveStep: (step?: number) => void,
+  toggleState: (event: React.MouseEvent<HTMLAnchorElement>) => void
+}
+
+class Notes extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      activeStep: 2
-    }
+    this.state = {};
   }
 
   render() {
     return (
       <React.Fragment>
-        <div className="columns">
+        <div className="columns padded">
           <div className="column is-one-third fixed">
             <div className="section">
               <div className="container">
@@ -39,18 +42,30 @@ class Notes extends Component<any, IState> {
                 <h2 className="subtitle is-family-secondary">
                     Tutorial notes
                 </h2>
-                {this.state.activeStep !== undefined &&
+                {this.props.activeStep !== undefined &&
                   <a href=""onClick={e => this.scrollTo(e, undefined)}>View all notes</a>
                 }
               </div>
 
               <hr />
               
-              {(this.state.activeStep === 0 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 0 || this.props.activeStep === undefined) &&
               <React.Fragment>
                 <div id="sec0" className="">
                   <h3 className="subtitle is-size-4">Part 0 - Notes about project set-up</h3>
+
+                  <p>Aim: to give a brief overview of the technologies used in the project and sources of information to learn more</p>
+                    
+                  <hr />
                   <div className="is-family-secondary content">
+                    <p className="subtitle has-text-weight-bold is-uppercase">What will we be building?</p>
+                    <p>We are going to build a small, single-page application that displays a list of possible destinations and allows the user to add some search criteria to find the one that is most appropriate for them.</p>
+
+                    <p>The functionality will be fairly simple and allow you to filter a results list based upon location and the number of people going away. </p>
+                    <div className="pack-it-demo">
+                      <iframe src="https://drive.google.com/file/d/1AupckcwL4ZJtCbv-0j6xF8mt9gfOnteD/preview" width="640" height="480"></iframe>
+                    </div>
+                    <hr />
                     <p className="subtitle has-text-weight-bold is-uppercase">Create React App</p>
                     <ol className="is-lower-roman" type="i">
                       <li>Simple to get started bootstrapping a ReactJs app - easy to configure SCSS & Typescript</li>
@@ -88,10 +103,14 @@ class Notes extends Component<any, IState> {
               </React.Fragment>
               }
 
-              {(this.state.activeStep === 1 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 1 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div id="sec1" className="">
                     <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
+
+                    <p>Aim: to pass a location name from our Home component to it's PackLocation children</p>
+                    
+                    <hr />
 
                     <div className="is-family-secondary content">
                       <p>Components are the building blocks of React.</p>
@@ -106,6 +125,9 @@ class Notes extends Component<any, IState> {
                       <p className="subtitle has-text-weight-bold is-uppercase">The pack-it app</p>
 
                       <p>In our case, we are aiming to have a view that renders out a number of possible get-away destinations</p>
+                      <p>Something that will look like this:</p>
+                      <img src="/images/app_overview.PNG" />
+
                       <p>In its simplest case we have a main Home component, which has one or more possible location components within it.</p>
                     
                       <p>Let's say we're starting out with a really simple location component - just one property: "name" - so on its own it might look like this:</p>
@@ -162,8 +184,9 @@ class Notes extends Component<any, IState> {
                       </div>
 
                       <p>And that's all there is to it - we've built our first component and passed a property down to it from the parent.</p>
+                      <p><a href="http://tutorials.lauraweatherhead.co.uk/react-typescript/step-0/" target="_blank">Take a look at what the app looks like currently</a></p>
 
-                      <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-1-The-Pack-Component"><i className="fab fa-github"></i> Check out the code here</a>
+                      <a href="https://github.com/lssweatherhead/ReactTypescriptStarter-PackIt/tree/Step-1-The-Pack-Component" target="_blank"><i className="fab fa-github"></i> Check out the code here</a>
 
                     </div>
                   </div>
@@ -172,10 +195,14 @@ class Notes extends Component<any, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 2 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 2 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div id="sec2" className="">
                     <h3 className="subtitle is-size-4">Part 2 - Typescript model declaration</h3>
+
+                    <p>Aim: to add a location model so that we can pass strongly typed location models to our PackLocation component</p>
+                    
+                    <hr />
 
                     <div className="is-family-secondary content">
                       <p>Time to start adding some models to our <span className="is-family-code">PackLocation</span> component</p>
@@ -246,10 +273,14 @@ class Notes extends Component<any, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 3 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 3 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 3 - State and Component Lifecycle</h3>
+
+                    <p>Aim: to be able to track the number of people that are going to be going away on our vacation as an internal Home component state</p>
+                    
+                    <hr />
 
                     <div className="is-family-secondary content">
                       <p className="subtitle has-text-weight-bold is-uppercase">State</p>
@@ -340,10 +371,14 @@ class Notes extends Component<any, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 4 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 4 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 4 - Forms & Events</h3>
+
+                    <p>Aim: to add a text field that the user can enter a location into and get stored to the Home component state</p>
+                    
+                    <hr />
 
                     <div className="is-family-secondary content">
                       <p>Okay, so now let's find out where people want to go by adding a simple text field to our app.</p>
@@ -406,13 +441,17 @@ class Notes extends Component<any, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 5 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 5 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 5 - Conditional rendering</h3>
 
+                    <p>Aim: to show different messages and content to the user dependent upon what they enter into the search boxes</p>
+                    
+                    <hr />
+
                     <div className="is-family-secondary content">
-                      <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
+                       <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
 
                       <p>There are a few different ways to show or hide content depending upon with component state</p>
 
@@ -500,10 +539,14 @@ class Notes extends Component<any, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 6 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 6 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 6 - Using lists and keys</h3>
+
+                    <p>Aim: to add a set of location data that can be looped through and converted into React elements in the view</p>
+                    
+                    <hr />
 
                     <div className="is-family-secondary content">
                       <p className="has-text-weight-bold">Know your <span className="is-family-code">map()</span> function</p>
@@ -636,9 +679,7 @@ class Notes extends Component<any, IState> {
 
   scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, idx?: number)  => {
     event.preventDefault();
-    this.setState({
-      activeStep: idx
-    })
+    this.props.setActiveStep(idx);
   }
 }
 
