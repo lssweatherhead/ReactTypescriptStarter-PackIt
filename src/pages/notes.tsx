@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 
 interface IState {
-  activeStep?: number
 }
 
 interface IProps {
+  activeStep: number,
   toggleState: (event: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
 class Notes extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      activeStep: 5
-    }
+    this.state = {};
   }
 
   render() {
@@ -43,14 +41,14 @@ class Notes extends Component<IProps, IState> {
                 <h2 className="subtitle is-family-secondary">
                     Tutorial notes
                 </h2>
-                {this.state.activeStep !== undefined &&
+                {this.props.activeStep !== undefined &&
                   <a href=""onClick={e => this.scrollTo(e, undefined)}>View all notes</a>
                 }
               </div>
 
               <hr />
               
-              {(this.state.activeStep === 0 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 0 || this.props.activeStep === undefined) &&
               <React.Fragment>
                 <div id="sec0" className="">
                   <h3 className="subtitle is-size-4">Part 0 - Notes about project set-up</h3>
@@ -92,7 +90,7 @@ class Notes extends Component<IProps, IState> {
               </React.Fragment>
               }
 
-              {(this.state.activeStep === 1 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 1 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div id="sec1" className="">
                     <h3 className="subtitle is-size-4">Part 1 - Component overview and Props</h3>
@@ -180,7 +178,7 @@ class Notes extends Component<IProps, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 2 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 2 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div id="sec2" className="">
                     <h3 className="subtitle is-size-4">Part 2 - Typescript model declaration</h3>
@@ -254,7 +252,7 @@ class Notes extends Component<IProps, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 3 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 3 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 3 - State and Component Lifecycle</h3>
@@ -348,7 +346,7 @@ class Notes extends Component<IProps, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 4 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 4 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 4 - Forms & Events</h3>
@@ -414,13 +412,17 @@ class Notes extends Component<IProps, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 5 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 5 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 5 - Conditional rendering</h3>
 
+                    <p>Aim: to show different messages and content to the user dependent upon what they enter into the search boxes</p>
+                    
+                    <hr />
+
                     <div className="is-family-secondary content">
-                      <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
+                       <p className="subtitle has-text-weight-bold is-uppercase">Show/Hide</p>
 
                       <p>There are a few different ways to show or hide content depending upon with component state</p>
 
@@ -508,7 +510,7 @@ class Notes extends Component<IProps, IState> {
                 </React.Fragment>
               }
 
-              {(this.state.activeStep === 6 || this.state.activeStep === undefined) &&
+              {(this.props.activeStep === 6 || this.props.activeStep === undefined) &&
                 <React.Fragment>
                   <div>
                     <h3 className="subtitle is-size-4">Part 6 - Using lists and keys</h3>
