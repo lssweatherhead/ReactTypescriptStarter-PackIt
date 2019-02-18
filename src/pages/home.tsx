@@ -46,7 +46,7 @@ class Home extends Component<any, IState> {
 
         return (
         <React.Fragment>
-            <div className="section">
+            <div className="section is-regular">
                 <div className="container">
                     <h1 className="title is-1"><i className="fas fa-map-signs"></i> Let's <span className="site-name">Pack It</span></h1>
                     <h2 className="subtitle is-family-secondary is-3">
