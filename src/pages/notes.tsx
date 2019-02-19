@@ -615,7 +615,7 @@ class Notes extends Component<IProps, IState> {
 
                       <p className="subtitle has-text-weight-bold">Filtering on state changes</p>
 
-                      <p>Remember that we have two functions that fire off when the the UI changes and update the state accordingly?</p>
+                      <p>Remember that we have two functions that fire off when the user interacts with the UI and update the state accordingly?</p>
                       <p>These are:</p>
                       <ul>
                         <li><span className="is-family-code">updateNumberPeople</span> that takes an updated number of people from a button and saves it to the component state</li>
