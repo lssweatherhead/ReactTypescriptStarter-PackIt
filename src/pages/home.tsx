@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import PackLocation from '../components/pack-location.component';
 import * as models from '../models';
 
@@ -19,6 +20,7 @@ class Home extends Component<any, IState> {
     }
 
     componentDidUpdate(prevProps: any, prevState: IState) {
+      console.log("Home component updated!")
       console.log("Used to have: " + prevState.numberOfPeople + " people, but now have: " + this.state.numberOfPeople + " people");
     }
     
